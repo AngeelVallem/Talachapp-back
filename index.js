@@ -1,7 +1,11 @@
-const server = require('./src/server')
+const server = require("./src/server");
+const dbConnect = require("./src/lib/db");
 
-
-
-server.listen(8080,() => {
-	console.log('Server is listening')
-})
+dbConnect()
+  .then(() => {
+    console.log("DB CONNECTED");
+    server.listen(8080, () => {
+      console.log("server is listening");
+    });
+  })
+  .catch((err) => console.log(err));
