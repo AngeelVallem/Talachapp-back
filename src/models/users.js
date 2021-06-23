@@ -28,15 +28,17 @@ const usersSchema = new mongoose.Schema({
     type: String,
     minLength: 1,
     maxLenght: 1,
-    required: true,
+    required: false,
   },
-  role: {
-    type: [String],
+  roles: {
+    type: String,
+    enum : ['user','worker','admin'],
     minLength: 1,
     required: true,
   },
   skills: {
-    type: [String],
+    type: String,
+    enum : ['Carpinteria,Electricista,Mecanico,Albañileria'],
     minLength: 1,
     required: false,
   },
