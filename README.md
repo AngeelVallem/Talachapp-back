@@ -3,7 +3,7 @@
 **TODOS:**
 
 - [ ] Payment impletation
-- [ ] bcrypt implementation
+- [x] bcrypt implementation
 - [ ] jwt implementation
 - [ ] Admin Model
 - [ ] Normal user routes
