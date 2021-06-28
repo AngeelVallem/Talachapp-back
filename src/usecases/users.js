@@ -6,7 +6,7 @@ function getAll() {
   return Users.find();
 }
 
-function findById(id) {
+function getById(id) {
   return Users.findById(id);
 }
 
@@ -55,7 +55,7 @@ function deleteById (id) {
 
 module.exports = {
   getAll,
-  findById,
+  getById,
   signUp,
   signIn,
   updateById,
