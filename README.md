@@ -4,8 +4,8 @@
 
 - [ ] Payment impletation
 - [x] bcrypt implementation
-- [ ] jwt implementation
-- [ ] Authentication routes for roles
+- [x] jwt implementation
+- [x] Authentication routes for roles
 - [ ] Images Bucket
 
 
