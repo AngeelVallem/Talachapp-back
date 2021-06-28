@@ -45,8 +45,8 @@ async function signIn(email, password) {
   return jwt.sign({ id: userFound._id });
 }
 
-function updateById(id) {
-  return Users.findByIdAndUpdate(id);
+function updateById(id,dataToUpdate) {
+  return Users.findByIdAndUpdate(id,dataToUpdate);
 }
 
 function deleteById (id) {
@@ -61,3 +61,4 @@ module.exports = {
   updateById,
   deleteById
 };
+
