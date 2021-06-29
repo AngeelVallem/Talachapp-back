@@ -24,13 +24,13 @@ const usersSchema = new mongoose.Schema({
     required: true,
     minLength: 1,
   },
-  premium : {
-    type : Boolean,
-    required : true
+  premium: {
+    type: Boolean,
+    required: true,
   },
   roles: {
     type: String,
-    enum : ['user','worker','admin'],
+    enum: ["user", "worker", "admin"],
     minLength: 1,
     required: true,
   },
@@ -42,7 +42,7 @@ const usersSchema = new mongoose.Schema({
   },
   skills: {
     type: String,
-    enum : ['Carpinteria,Electricista,Mecanico,Albañileria'],
+    enum: ["Carpinteria,Electricista,Mecanico,Albañileria"],
     minLength: 1,
     required: false,
   },
@@ -52,15 +52,13 @@ const usersSchema = new mongoose.Schema({
     maxLenght: 150,
     required: false,
   },
-  avatar: {
+  favoritesWorkers: [],
+
+  subscriptionId: {
     type: String,
-    minLength: 2,
-    required: false,
   },
 });
 
+const model = mongoose.model("users", usersSchema);
 
-
-const model = mongoose.model('users', usersSchema)
-
-module.exports = model 
+module.exports = model;

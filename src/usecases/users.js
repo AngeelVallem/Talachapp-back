@@ -10,6 +10,11 @@ function getById(id) {
   return Users.findById(id);
 }
 
+function getUser(token) {
+  const { id } = jwt.decode(token);
+  return User.findById(id)
+}
+
 async function signUp({ name, lastName, email, password, premium, roles }) {
   const userFound = await Users.findOne({ email });
 
@@ -58,6 +63,7 @@ module.exports = {
   getById,
   signUp,
   signIn,
+  getUser,
   updateById,
   deleteById
 };
