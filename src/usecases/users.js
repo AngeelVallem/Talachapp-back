@@ -54,8 +54,11 @@ function updateById(id,dataToUpdate) {
   return Users.findByIdAndUpdate(id,dataToUpdate);
 }
 
-function deleteById (id) {
-  return Users.findByIdAndDelete(id)
+function deleteById (idUser) {
+  return Users.findByIdAndDelete(idUser)
+}
+function updateScore (id, newScore){
+  return Users.findByIdAndUpdate(id, newScore)
 }
 
 module.exports = {
@@ -65,6 +68,7 @@ module.exports = {
   signIn,
   getUser,
   updateById,
-  deleteById
+  deleteById,
+  updateScore
 };
 

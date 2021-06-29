@@ -1,9 +1,34 @@
 const express = require('express')
 const users = require('../usecases/users')
+
+//Middlewares auth.js
+const authMiddlewares = require('../middlewares/auth')
+//
 const router = express.Router()
 
+// ADMIN-USERS-WORKERS
 
-router.post('/', async (request, response) =>{
+router.get('/', authMiddlewares.hasToken, async (request, response) =>{
+    try{
+        const allUsers = await users.getAll()
+        response.json({
+            success: true,
+            message: 'All Users',
+            data: {
+                users: allUsers
+            }
+        })
+    } catch (error){
+        response.status(400)
+        response.json({
+            success: false,
+            message: 'Error not get Users',
+            error: error.message
+        })
+    }
+})
+
+router.post('/',  async (request, response) =>{
     try{
         const newUser = await users.signUp(request.body)
 
@@ -22,25 +47,6 @@ router.post('/', async (request, response) =>{
             error: error.message
         })
         
-    }
-})
-router.get('/', async (request, response) =>{
-    try{
-        const allUsers = await users.getAll()
-        response.json({
-            success: true,
-            message: 'All Users',
-            data: {
-                users: allUsers
-            }
-        })
-    } catch (error){
-        response.status(400)
-        response.json({
-            success: false,
-            message: 'Error not get Users',
-            error: error.message
-        })
     }
 })
 
@@ -67,8 +73,7 @@ router.post('/login', async (request, response) =>{
     }
 })
 
-
-router.patch('/:id', async (request, response) => {	
+router.patch('/:id', authMiddlewares.hasToken, async (request, response) => {	
 	try{
 		const { id } = request.params
         const userUpdated = await users.updateById(id, request.body)
@@ -88,6 +93,60 @@ router.patch('/:id', async (request, response) => {
 		})
 	}
 })
+
+router.patch('/:id', authMiddlewares.hasToken, async (request, response) => {	
+	try{
+		const { id } = request.params
+        const avgstar = await users.updateScore(id, request.body)
+		response.json({
+			success : true,
+			message : "add some stars",
+            data: {
+                newStars: avgstar
+            }
+		})
+	}
+	catch(error){
+		response.status(400)
+		response.json({
+			succes : false,
+			message : error.message
+		})
+	}
+})
+
+// JUST ADMIN
+
+router.delete('/:id', authMiddlewares.hasRole(['admin']), async (request, response) =>{
+    try{
+		const idUser = request.params.id
+		await users.deleteById(idUser)
+		response.json({
+			success : true,
+			message : "User deleted"
+		})
+	}
+	catch(error){
+		response.status(400)
+		response.json({
+			succes : false,
+			message : error.message
+		})
+	}
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

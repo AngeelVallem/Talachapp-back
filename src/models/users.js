@@ -65,6 +65,12 @@ const usersSchema = new mongoose.Schema({
     maxLegth : 1,
     required : true
   }
+//   ,
+//   avgstar: {
+//     type: Number,
+//     required: true,
+//     enum: ["1", "2", "3", "4","5"],
+// }
 
 });
 
