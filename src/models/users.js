@@ -57,6 +57,15 @@ const usersSchema = new mongoose.Schema({
   subscriptionId: {
     type: String,
   },
+
+  location : {
+    type : [String],
+    enum : ['CDMX, Cuernavaca'],
+    minLength : 1,
+    maxLegth : 1,
+    required : true
+  }
+
 });
 
 const model = mongoose.model("users", usersSchema);
