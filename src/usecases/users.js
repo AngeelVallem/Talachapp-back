@@ -6,13 +6,14 @@ function getAll() {
   return Users.find();
 }
 
-function getById(id) {
-  return Users.findById(id);
+function getById (id){
+  return Users.findById(id)
 }
 
 function getUser(token) {
-  const { id } = jwt.decode(token);
-  return User.findById(id)
+  const {id} = jwt.decode(token)
+  const user = getById(id)
+  return user;
 }
 
 async function signUp({ name, lastName, email, password, premium, roles }) {
@@ -47,18 +48,18 @@ async function signIn(email, password) {
     throw new Error("Invalid data");
   }
 
-  return jwt.sign({ id: userFound._id });
+  return jwt.sign({ id: userFound._id })
 }
 
-function updateById(id,dataToUpdate) {
-  return Users.findByIdAndUpdate(id,dataToUpdate);
+function updateById(id, dataToUpdate) {
+  return Users.findByIdAndUpdate(id, dataToUpdate);
 }
 
-function deleteById (idUser) {
-  return Users.findByIdAndDelete(idUser)
+function deleteById(idUser) {
+  return Users.findByIdAndDelete(idUser);
 }
-function updateScore (id, newScore){
-  return Users.findByIdAndUpdate(id, newScore)
+function updateScore(id, newScore) {
+  return Users.findByIdAndUpdate(id, newScore);
 }
 
 module.exports = {
@@ -69,6 +70,6 @@ module.exports = {
   getUser,
   updateById,
   deleteById,
-  updateScore
+  updateScore,
 };
 

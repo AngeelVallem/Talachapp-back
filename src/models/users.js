@@ -8,10 +8,10 @@ const usersSchema = new mongoose.Schema({
     required: true,
   },
   lastName: {
-    type: String,
-    minLength: 2,
-    maxLenght: 100,
-    required: true,
+    type : String,
+    minlength : 2,
+    maxLenght : 100,
+    required : true,
   },
   email: {
     type: String,
@@ -24,14 +24,17 @@ const usersSchema = new mongoose.Schema({
     required: true,
     minLength: 1,
   },
+  price : {
+    type : Number,
+    required : false,
+  },
   premium: {
     type: Boolean,
     required: true,
   },
   roles: {
-    type: String,
+    type: [String],
     enum: ["user", "worker", "admin"],
-    minLength: 1,
     required: true,
   },
   gender: {
@@ -63,7 +66,7 @@ const usersSchema = new mongoose.Schema({
     enum : ['CDMX, Cuernavaca'],
     minLength : 1,
     maxLegth : 1,
-    required : true
+    required : false
   }
 //   ,
 //   avgstar: {

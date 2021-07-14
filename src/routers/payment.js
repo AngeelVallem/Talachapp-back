@@ -1,8 +1,11 @@
-const router = require("express").Router;
+const express = require("express");
 const SECRET_STRIPE_KEY = process.env.SECRET_STRIPE_KEY;
 const stripe = require("stripe")(SECRET_STRIPE_KEY);
 const auth = require("../middlewares/auth");
 const user = require("../usecases/users");
+
+
+const router = express.Router()
 
 router.patch("/success", auth.hasToken, async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
