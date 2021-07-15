@@ -8,10 +8,10 @@ const usersSchema = new mongoose.Schema({
     required: true,
   },
   lastName: {
-    type : String,
-    minlength : 2,
-    maxLenght : 100,
-    required : true,
+    type: String,
+    minlength: 2,
+    maxLenght: 100,
+    required: true,
   },
   email: {
     type: String,
@@ -24,9 +24,9 @@ const usersSchema = new mongoose.Schema({
     required: true,
     minLength: 1,
   },
-  price : {
-    type : Number,
-    required : false,
+  price: {
+    type: Number,
+    required: false,
   },
   premium: {
     type: Boolean,
@@ -44,8 +44,8 @@ const usersSchema = new mongoose.Schema({
     required: false,
   },
   skills: {
-    type: String,
-    enum: ["Carpinteria,Electricista,Mecanico,Albañileria"],
+    type: [String],
+    enum: ["Carpinteria", "Electricista", "Mecanico", "Albañileria"],
     minLength: 1,
     required: false,
   },
@@ -55,26 +55,40 @@ const usersSchema = new mongoose.Schema({
     maxLenght: 150,
     required: false,
   },
-  favoritesWorkers: [],
-
   subscriptionId: {
     type: String,
   },
+  profilePicture: {
+    type: String,
+    required: false,
+  },
+  location: {
+    type: [String],
+    enum: [
+      "Alvaro Obregon",
+      "Azcapotzalco",
+      "Benito Juárez",
+      "Coyoacan",
+      "Cuajimalpa de Morelos",
+      "Cuauhtémoc",
+      "Gustavo A. Madero",
+      "Iztacalco",
+      "Tlalpan",
+      "Venustiano Carranza",
+      "Xochimilco",
+    ],
+    minLength: 1,
+    maxLegth: 1,
+    required: false,
+  },
+  score : [],
 
-  location : {
-    type : [String],
-    enum : ['CDMX, Cuernavaca'],
-    minLength : 1,
-    maxLegth : 1,
-    required : false
-  }
-//   ,
-//   avgstar: {
-//     type: Number,
-//     required: true,
-//     enum: ["1", "2", "3", "4","5"],
-// }
-
+  //   ,
+  //   avgstar: {
+  //     type: Number,
+  //     required: true,
+  //     enum: ["1", "2", "3", "4","5"],
+  // }
 });
 
 const model = mongoose.model("users", usersSchema);

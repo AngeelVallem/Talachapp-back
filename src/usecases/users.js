@@ -1,22 +1,41 @@
 const Users = require("../models/users");
+const Tickets = require("../models/tickets")
 const bcrypt = require("../lib/bcrypt");
 const jwt = require("../lib/jwt");
 
-function getAll() {
-  return Users.find();
+function getAll(filters) {
+  return Users.find(filters);
 }
 
-function getById (id){
-  return Users.findById(id)
+function getById(id) {
+  return Users.findById(id);
+}
+
+function getWorkers() {
+  return Users.find({ roles: "worker" });
 }
 
 function getUser(token) {
-  const {id} = jwt.decode(token)
-  const user = getById(id)
+  const { id } = jwt.decode(token);
+  const user = getById(id);
   return user;
 }
 
-async function signUp({ name, lastName, email, password, premium, roles }) {
+async function signUp({
+  name,
+  lastName,
+  email,
+  password,
+  premium,
+  roles,
+  skills,
+  price,
+  gender,
+  description,
+  works,
+  profilePicture,
+  location,
+}) {
   const userFound = await Users.findOne({ email });
 
   if (userFound) {
@@ -32,6 +51,14 @@ async function signUp({ name, lastName, email, password, premium, roles }) {
     password: encriptedPassword,
     premium,
     roles,
+    skills,
+    price,
+    premium,
+    gender,
+    description,
+    works,
+    profilePicture,
+    location,
   });
 }
 
@@ -48,7 +75,7 @@ async function signIn(email, password) {
     throw new Error("Invalid data");
   }
 
-  return jwt.sign({ id: userFound._id })
+  return jwt.sign({ id: userFound._id });
 }
 
 function updateById(id, dataToUpdate) {
@@ -65,6 +92,7 @@ function updateScore(id, newScore) {
 module.exports = {
   getAll,
   getById,
+  getWorkers,
   signUp,
   signIn,
   getUser,
@@ -72,4 +100,3 @@ module.exports = {
   deleteById,
   updateScore,
 };
-
