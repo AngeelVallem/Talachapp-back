@@ -45,7 +45,7 @@ const usersSchema = new mongoose.Schema({
   },
   skills: {
     type: [String],
-    enum: ["Carpinteria", "Electricista", "Mecanico", "Albañileria"],
+    enum: ["Carpintería", "Electricista", "Mecánico", "Albañilería"],
     minLength: 1,
     required: false,
   },
@@ -65,10 +65,10 @@ const usersSchema = new mongoose.Schema({
   location: {
     type: [String],
     enum: [
-      "Alvaro Obregon",
+      "Álvaro Obregón",
       "Azcapotzalco",
       "Benito Juárez",
-      "Coyoacan",
+      "Coyoacán",
       "Cuajimalpa de Morelos",
       "Cuauhtémoc",
       "Gustavo A. Madero",
